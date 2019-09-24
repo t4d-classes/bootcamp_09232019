@@ -1,0 +1,7 @@
+Exercise 6
+
+1. Within the Car Tool component create an array of car objects using the data from the table. Please include the Id, Make, Model, Year, Color and Price.
+
+2. Using the array of cars dynamically generate the table rows to display the cars.
+
+3. I should be able to add a new car to the array in code, reload the page and that car is displayed in the table.

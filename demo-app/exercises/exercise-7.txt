@@ -1,0 +1,13 @@
+Exercise 7
+
+1. Pass the array of cars as props into the Car Tool.
+
+2. In the Car Tool, perform the following format operations:
+
+a. Perform a sort of the car data on year. Sort it in reverse year order. You may need to look up some API functions to figure out how to do this properly.
+
+b. Format the price to use a dollar sign.
+
+c. Format the year to display the last two digits.
+
+3. Ensure it all works.

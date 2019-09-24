@@ -1,0 +1,13 @@
+Exercise 5
+
+1. Beneath the Car Tool header within the Car Tool component display a table (HTML table plus related elements) of cars.
+
+2. The table should have the following columns:
+
+Id, Make, Model, Year, Color, Price
+
+3. Display column headers and two rows of hardcoded car data.
+
+The cars can be you cars, you dream cars, or just random cars you think of...
+
+4. Ensure it works.

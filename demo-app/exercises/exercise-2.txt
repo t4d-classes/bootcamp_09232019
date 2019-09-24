@@ -1,0 +1,5 @@
+Exercise 2
+
+1. Using the HTML elements we learned about and any other HTML element you would to use, please create a profile page using the data collected from partner.
+
+2. Do not worry about styling.
