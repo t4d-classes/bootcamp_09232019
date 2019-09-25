@@ -1,0 +1,7 @@
+Exercise 8
+
+1. Create a new component named Tool Header. Tool Header will receive a prop named headerText. Tool Header will display the header and h1 element with the h1 element populated with headerText
+
+2. Remove the header and h1 element from Car Tool and replace it with the new ToolHeader component. Pass in the text "Car Tool" for the headerText.
+
+3. Ensure it works.

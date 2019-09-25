@@ -1,0 +1,17 @@
+Exercise 12
+
+1. Add a new column to the table with a column header of 'Actions'.
+
+2. In the Car Row component, add a new column. In the new column, place
+a button with a label of 'Delete'.
+
+3. When the Delete button is clicked the car is removed from the table.
+
+Hints...
+
+a. Find a function to do the delete immutably - filter
+
+b. Remember that functions are objects
+
+4. Ensure all of the features work.
+

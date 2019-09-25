@@ -1,0 +1,17 @@
+Exercise 10
+
+1. Finish the Car Tool form. Add the color and price fields. Price should be a number.
+
+2. Take the captured car form data, and add it to the array of cars.
+
+Hints:
+
+a. There is an onClick event.
+
+b. useState can be called multiple times in a component.
+
+c. To calculate the id for the new car, the following expression:
+
+Math.max(...cars.map(c => c.id), 0) + 1
+
+3. Ensure it works.

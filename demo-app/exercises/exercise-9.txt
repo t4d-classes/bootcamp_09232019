@@ -1,0 +1,9 @@
+Exercise 9
+
+1. Create a new component named Car Table. Move the table from Car Tool to Car Table. Replace the table of cars in Car Tool with the new Car Table component.
+
+2. Create a new component named Car Row. Move the car data row from Car Table component to Car Row component. Replace the car data row in Car Table with Car Row.
+
+3. Ensure the page renders as before using the two new components.
+
+4. Ensure it works.
