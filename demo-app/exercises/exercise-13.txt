@@ -1,0 +1,13 @@
+Exercise 13
+
+1. Add a button labeled Edit to the actions column of the Car Row component.
+
+2. When the Edit button is clicked, the View Car Row for that one car is changed to Edit Car Row.
+
+3. Edit Car Row will have input fields for the make, model, year, color and price. The buttons on the Edit Car Row will be 'Save' and 'Cancel'. Do not implement the onClick events of the Save and Cancel buttons. The original car values should prefill the input fields for the Edit Car Row.
+
+Only one row is editable at a time.
+
+You do not need a form element to use input element.
+
+4. Ensure the edit button works, do not worry about adding and deleting cars working properly.

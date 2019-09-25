@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+
+import { useForm } from '../hooks/useForm';
 
 const getInitialCar = () => ({
   make: '',
@@ -10,21 +13,12 @@ const getInitialCar = () => ({
 
 export const CarForm = ({ onSubmitCar, buttonText }) => {
 
-  const [ carForm, setCarForm ] = useState(getInitialCar());
-
-  const change = (e) => {
-    // update the state of the carForm, and it will trigger a re-render
-    setCarForm({
-      ...carForm,
-      [ e.target.name ]: e.target.type === 'number'
-        ? Number(e.target.value)
-        : e.target.value,
-    });
-  };
+  const [ carForm, change, resetCarForm ] =
+    useForm(getInitialCar());
 
   const submitCar = () => {
     onSubmitCar({ ...carForm });
-    setCarForm(getInitialCar());
+    resetCarForm();
   };
 
   return <form>
@@ -63,4 +57,13 @@ export const CarForm = ({ onSubmitCar, buttonText }) => {
 
   </form>;
 
+};
+
+CarForm.defaultProps = {
+  buttonText: 'Submit Car',
+};
+
+CarForm.propTypes = {
+  buttonText: PropTypes.string.isRequired,
+  onSubmitCar: PropTypes.func.isRequired,
 };
