@@ -138,5 +138,121 @@
       // };
     
     </script> -->
+    <script>
+
+      'use strict';
+
+      // function doIt() {
+
+      //   console.log(this);
+
+      // }
+
+      // doIt();
+      // window.doIt();
+
+      // const o = {
+      //   id: 2,
+      //   doIt: doIt,
+      // };
+
+      // o.doIt();
+
+      // console.log(o.doIt === window.doIt);
+
+
+      // function outer() {
+
+      //   console.log(this); // 1st
+
+        // const that = this;
+
+        // const inner = () => {
+        //   console.log(this); // 2nd
+        // }
+
+        // inner();
+      // }
+
+      // const o = {
+      //   id: 2,
+      //   outer: outer,
+      // };
+
+      // setTimeout(() => o.outer(), 2000);
+
+      // const parent = {
+      //   name: 'Owiso',
+      //   amt: 2000,
+      //   addr: {
+      //     city: 'Minneapolis',
+      //     state: 'MN',
+      //   },
+      // };
+
+      // const child = Object.create(parent);
+      // child.name = 'Haji';
+      // console.log(child.amt);
+
+      // parent.amt = 3000;
+      // console.log(child.amt);
+
+      // child.amt = 15;
+      // console.log(child.amt);
+
+      // delete child.amt;
+
+      // console.log(child.addr.city);
+
+      // // child.addr.city = 'Mountain View';
+      // child.addr = {
+      //   city: 'Mountain View',
+      // };
+
+      // console.log(parent.addr.city);
+      // console.log(child);
+
+      // class Person {
+
+      //   constructor(firstName, lastName) {
+      //     this.firstName = firstName;
+      //     this.lastName = lastName;
+      //   }
+
+      //   getFullName = () => {
+      //     return this.firstName + ' ' + this.lastName;
+      //   }
+      // }
+
+      // const p = new Person('Bob', 'Smith');
+      // console.log(p.getFullName());
+      // console.log(p);
+
+      // function Person2(firstName, lastName) {
+      //   this.firstName = firstName;
+      //   this.lastName = lastName;
+      // }
+
+      // Person2.prototype.getFullName = function() {
+      //   return this.firstName + ' ' + this.lastName;
+      // }
+
+      // const p2 = new Person2('Bob', 'Smith');
+      // console.log(p2.getFullName());
+      // console.log(p2);
+
+      // setTimeout(p.getFullName, 2000);
+
+      // function doIt() {
+      //   console.log(this);
+      // }
+
+      // doIt();
+
+      // const doIt2 = doIt.bind({ id: 2});
+      // doIt2();
+
+
+    </script>
   </body>
 </html>

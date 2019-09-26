@@ -1,0 +1,12 @@
+Exercise 14
+
+1. Implement the save and cancel buttons. When saving, save the changes and switch the row to view mode. When canceling, discard the changes and switch the row back to view mode.
+
+2. If you add or delete while currently editing a row, discard the row edit changes and change the row back to view mode.
+
+3. Ensure all functionality works and there are no errors in the console.
+
+
+Extra Credit
+
+1. When a user clicks on a column header, sort the table on that column. Ascending only.
