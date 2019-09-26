@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
 const ADD_ACTION = 'ADD';
 const SUBTRACT_ACTION = 'SUBTRACT';
+const MULTIPLY_ACTION = 'MULTIPLY';
+const DIVIDE_ACTION = 'DIVIDE';
 
 const calcReducer = (state = 0, action) => {
   console.log('state:', state, 'action:', action);
@@ -11,6 +13,10 @@ const calcReducer = (state = 0, action) => {
       return state + action.payload;
     case SUBTRACT_ACTION:
       return state - action.payload;
+    case MULTIPLY_ACTION:
+      return state * action.payload;
+    case DIVIDE_ACTION:
+      return state / action.payload;
     default:
       return state;
   }
@@ -40,21 +46,9 @@ calcStore.subscribe(() => {
 
 const createAddAction = payload => ({ type: ADD_ACTION, payload });
 const createSubtractAction = payload => ({ type: SUBTRACT_ACTION, payload });
+const createMultiplyAction = payload => ({ type: MULTIPLY_ACTION, payload });
+const createDivideAction = payload => ({ type: DIVIDE_ACTION, payload });
 
-calcStore.dispatch(createAddAction(1));
-calcStore.dispatch(createSubtractAction(2));
-calcStore.dispatch({ type: 'ADD', payload: 3 });
-calcStore.dispatch({ type: 'SUBTRACT', payload: 4 });
-calcStore.dispatch({ type: 'ADD', payload: 5 });
-
-// create the component tree on #root
-ReactDOM.render(<ToolHeader headerText="A" />, document.querySelector('#root'));
-
-// update the component tree of #root
-ReactDOM.render(<ToolHeader headerText="B" />, document.querySelector('#root'));
-
-// update the component tree of #root
-ReactDOM.render(<ToolHeader headerText="C" />, document.querySelector('#root'));
 
 // Lab Exercise
 
@@ -63,3 +57,31 @@ ReactDOM.render(<ToolHeader headerText="C" />, document.querySelector('#root'));
 // 2. The component should display the current result and an input for collecting a new operand. When a operator button is clicked, the result should be updated.
 
 // 3. Ensure it works.
+
+const CalcTool = ({ result, onAdd, onSubtract, onMultiply, onDivide }) => {
+
+  const [ input, setInput ] = useState(0);
+
+  return <form>
+    <div>Result: {result}</div>
+    <div>Input: <input type="number" name="input" value={input} onChange={(e) => setInput(Number(e.target.value))} /></div>
+
+    <button type="button" onClick={() => onAdd(input)}>+</button>
+    <button type="button" onClick={() => onSubtract(input)}>-</button>
+    <button type="button" onClick={() => onMultiply(input)}>*</button>
+    <button type="button" onClick={() => onDivide(input)}>/</button>
+  </form>
+};
+
+const add = value => calcStore.dispatch(createAddAction(value));
+const subtract = value => calcStore.dispatch(createSubtractAction(value));
+const multiply = value => calcStore.dispatch(createMultiplyAction(value));
+const divide = value => calcStore.dispatch(createDivideAction(value));
+
+calcStore.subscribe(() => {
+  ReactDOM.render(<CalcTool result={calcStore.getState()}
+    onAdd={add} onSubtract={subtract}
+    onMultiply={multiply} onDivide={divide} />, document.querySelector('#root'));
+});
+
+calcStore.dispatch(createAddAction(0));
