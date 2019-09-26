@@ -6,26 +6,42 @@ const SUBTRACT_ACTION = 'SUBTRACT';
 const MULTIPLY_ACTION = 'MULTIPLY';
 const DIVIDE_ACTION = 'DIVIDE';
 
-const calcReducer = (state = { result: 0 }, action) => {
+const calcReducer = (state = { result: 0, history: [] }, action) => {
   switch(action.type) {
     case ADD_ACTION:
       return {
         ...state,
+        history: [
+          ...state.history,
+          { opName: action.type, opValue: action.payload },
+        ],
         result: state.result + action.payload,
       };
     case SUBTRACT_ACTION:
       return {
         ...state,
+        history: [
+          ...state.history,
+          { opName: action.type, opValue: action.payload },
+        ],
         result: state.result - action.payload,
       };
     case MULTIPLY_ACTION:
       return {
         ...state,
+        history: [
+          ...state.history,
+          { opName: action.type, opValue: action.payload },
+        ],
         result: state.result * action.payload,
       };
     case DIVIDE_ACTION:
       return {
         ...state,
+        history: [
+          ...state.history,
+          { opName: action.type, opValue: action.payload },
+        ],
         result: state.result / action.payload,
       };
     default:
@@ -69,7 +85,7 @@ const createDivideAction = payload => ({ type: DIVIDE_ACTION, payload });
 
 // 3. Ensure it works.
 
-const CalcTool = ({ result, onAdd, onSubtract, onMultiply, onDivide }) => {
+const CalcTool = ({ result, history, onAdd, onSubtract, onMultiply, onDivide }) => {
 
   const [ input, setInput ] = useState(0);
 
@@ -81,6 +97,10 @@ const CalcTool = ({ result, onAdd, onSubtract, onMultiply, onDivide }) => {
     <button type="button" onClick={() => onSubtract(input)}>-</button>
     <button type="button" onClick={() => onMultiply(input)}>*</button>
     <button type="button" onClick={() => onDivide(input)}>/</button>
+
+    <ul>
+      {history.map((h, i) => <li key={i}>{h.opName} {h.opValue}</li>)}
+    </ul>
   </form>
 };
 
@@ -90,19 +110,26 @@ const multiply = value => calcStore.dispatch(createMultiplyAction(value));
 const divide = value => calcStore.dispatch(createDivideAction(value));
 
 calcStore.subscribe(() => {
-  ReactDOM.render(<CalcTool result={calcStore.getState().result}
-    onAdd={add} onSubtract={subtract}
-    onMultiply={multiply} onDivide={divide} />, document.querySelector('#root'));
+  ReactDOM.render(
+    <CalcTool
+      result={calcStore.getState().result}
+      history={calcStore.getState().history}
+      onAdd={add} onSubtract={subtract}
+      onMultiply={multiply} onDivide={divide} />,
+    document.querySelector('#root'),
+  );
 });
 
 calcStore.dispatch(createAddAction(0));
 
 // Lab Exercise
 
-// 1. Display a history of operations performs using an unordered list beneath the buttons on the calculator.
+// 1. Discover the meaning and purpose of life.
 
-// 2. For each history entry, display the value typed into the input field and the type of operation performed.
+// 2. Add a button to the Calc Tool with a label of 'Clear'.
 
-// 3. Be sure to follow the pattern on the back and be sure to use the correct parts of Redux and React to make this happen.
+// 3. When the 'Clear' button is clicked, change the result 0, clear the input field and clear the history.
 
-// 4. Ensure it works.
+// 4. On each row of the history entries, add a button with a label of 'X'. When the button is clicked, remove the history entry.
+
+// 5. Ensure it all works!
