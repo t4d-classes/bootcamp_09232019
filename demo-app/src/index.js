@@ -1,69 +1,69 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
+import { createStore, bindActionCreators } from 'redux';
 
 const ADD_ACTION = 'ADD';
 const SUBTRACT_ACTION = 'SUBTRACT';
 const MULTIPLY_ACTION = 'MULTIPLY';
 const DIVIDE_ACTION = 'DIVIDE';
+const CLEAR_ACTION = 'CLEAR';
 
-const calcReducer = (state = { result: 0, history: [] }, action) => {
+const resultReducer = (state = 0, action) => {
   switch(action.type) {
     case ADD_ACTION:
-      return {
-        ...state,
-        history: [
-          ...state.history,
-          { opName: action.type, opValue: action.payload },
-        ],
-        result: state.result + action.payload,
-      };
+      return state + action.payload;
     case SUBTRACT_ACTION:
-      return {
-        ...state,
-        history: [
-          ...state.history,
-          { opName: action.type, opValue: action.payload },
-        ],
-        result: state.result - action.payload,
-      };
+      return state - action.payload;
     case MULTIPLY_ACTION:
-      return {
-        ...state,
-        history: [
-          ...state.history,
-          { opName: action.type, opValue: action.payload },
-        ],
-        result: state.result * action.payload,
-      };
+      return state * action.payload;
     case DIVIDE_ACTION:
-      return {
-        ...state,
-        history: [
-          ...state.history,
-          { opName: action.type, opValue: action.payload },
-        ],
-        result: state.result / action.payload,
-      };
+      return state / action.payload;
+    case CLEAR_ACTION:
+      return 0;
     default:
       return state;
   }
 };
 
-const createStore = (reducerFn) => {
+const historyReducer = (state = [], action) => {
 
-  let currentState = undefined;
-  const subscribers = [];
+  if ([ADD_ACTION, SUBTRACT_ACTION, MULTIPLY_ACTION, DIVIDE_ACTION].includes(action.type)) {
+    return [
+      ...state,
+      { opName: action.type, opValue: action.payload },
+    ];
+  }
 
-  return {
-    getState: () => currentState,
-    dispatch: (action) => {
-      currentState = reducerFn(currentState, action);
-      subscribers.forEach( callbackFn => callbackFn() );
-    },
-    subscribe: (callbackFn) => { subscribers.push(callbackFn); },
-  };
+  if (action.type === CLEAR_ACTION) {
+    return [];
+  }
 
 };
+
+const calcReducer = (state = { }, action) => {
+
+  return {
+    ...state,
+    result: resultReducer(state.result, action),
+    history: historyReducer(state.history, action),
+  };
+};
+
+// const createStore = (reducerFn) => {
+
+//   let currentState = undefined;
+//   const subscribers = [];
+
+//   return {
+//     getState: () => currentState,
+//     dispatch: (action) => {
+//       currentState = reducerFn(currentState, action);
+//       subscribers.forEach( callbackFn => callbackFn() );
+//     },
+//     subscribe: (callbackFn) => { subscribers.push(callbackFn); },
+//   };
+
+// };
 
 const calcStore = createStore(calcReducer);
 
@@ -75,15 +75,6 @@ const createAddAction = payload => ({ type: ADD_ACTION, payload });
 const createSubtractAction = payload => ({ type: SUBTRACT_ACTION, payload });
 const createMultiplyAction = payload => ({ type: MULTIPLY_ACTION, payload });
 const createDivideAction = payload => ({ type: DIVIDE_ACTION, payload });
-
-
-// Lab Exercise
-
-// 1. Create a Calc Tool component similar to the one I will draw on the board. The component should support multiply, divide, add and subtract
-
-// 2. The component should display the current result and an input for collecting a new operand. When a operator button is clicked, the result should be updated.
-
-// 3. Ensure it works.
 
 const CalcTool = ({ result, history, onAdd, onSubtract, onMultiply, onDivide }) => {
 
@@ -101,13 +92,41 @@ const CalcTool = ({ result, history, onAdd, onSubtract, onMultiply, onDivide }) 
     <ul>
       {history.map((h, i) => <li key={i}>{h.opName} {h.opValue}</li>)}
     </ul>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Add</th>
+          <th>Subtract</th>
+          <th>Multiply</th>
+          <th>Divide</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{history.reduce( (sum, op) => op.opName === 'ADD' ? sum + 1 : sum, 0 )}</td>
+          <td>{history.reduce( (sum, op) => op.opName === 'SUBTRACT' ? sum + 1 : sum, 0 )}</td>
+          <td>{history.reduce( (sum, op) => op.opName === 'MULTIPLY' ? sum + 1 : sum, 0 )}</td>
+          <td>{history.reduce( (sum, op) => op.opName === 'DIVIDE' ? sum + 1 : sum, 0 )}</td>
+        </tr>
+      </tbody>
+    </table>
   </form>
 };
 
-const add = value => calcStore.dispatch(createAddAction(value));
-const subtract = value => calcStore.dispatch(createSubtractAction(value));
-const multiply = value => calcStore.dispatch(createMultiplyAction(value));
-const divide = value => calcStore.dispatch(createDivideAction(value));
+// const bindActionCreators = (actionsMap, dispatch) => {
+//   return Object.keys(actionsMap).reduce( (boundActionsMap, actionKey) => {
+//     boundActionsMap[actionKey] = (...params) => dispatch(actionsMap[actionKey](...params));
+//     return boundActionsMap;
+//   } , {});
+// };
+
+const { add, subtract, multiply, divide } = bindActionCreators({
+  add: createAddAction,
+  subtract: createSubtractAction,
+  multiply: createMultiplyAction,
+  divide: createDivideAction,
+}, calcStore.dispatch);
 
 calcStore.subscribe(() => {
   ReactDOM.render(
@@ -121,15 +140,3 @@ calcStore.subscribe(() => {
 });
 
 calcStore.dispatch(createAddAction(0));
-
-// Lab Exercise
-
-// 1. Discover the meaning and purpose of life.
-
-// 2. Add a button to the Calc Tool with a label of 'Clear'.
-
-// 3. When the 'Clear' button is clicked, change the result 0, clear the input field and clear the history.
-
-// 4. On each row of the history entries, add a button with a label of 'X'. When the button is clicked, remove the history entry.
-
-// 5. Ensure it all works!
