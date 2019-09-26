@@ -6,17 +6,28 @@ const SUBTRACT_ACTION = 'SUBTRACT';
 const MULTIPLY_ACTION = 'MULTIPLY';
 const DIVIDE_ACTION = 'DIVIDE';
 
-const calcReducer = (state = 0, action) => {
-  console.log('state:', state, 'action:', action);
+const calcReducer = (state = { result: 0 }, action) => {
   switch(action.type) {
     case ADD_ACTION:
-      return state + action.payload;
+      return {
+        ...state,
+        result: state.result + action.payload,
+      };
     case SUBTRACT_ACTION:
-      return state - action.payload;
+      return {
+        ...state,
+        result: state.result - action.payload,
+      };
     case MULTIPLY_ACTION:
-      return state * action.payload;
+      return {
+        ...state,
+        result: state.result * action.payload,
+      };
     case DIVIDE_ACTION:
-      return state / action.payload;
+      return {
+        ...state,
+        result: state.result / action.payload,
+      };
     default:
       return state;
   }
@@ -79,9 +90,19 @@ const multiply = value => calcStore.dispatch(createMultiplyAction(value));
 const divide = value => calcStore.dispatch(createDivideAction(value));
 
 calcStore.subscribe(() => {
-  ReactDOM.render(<CalcTool result={calcStore.getState()}
+  ReactDOM.render(<CalcTool result={calcStore.getState().result}
     onAdd={add} onSubtract={subtract}
     onMultiply={multiply} onDivide={divide} />, document.querySelector('#root'));
 });
 
 calcStore.dispatch(createAddAction(0));
+
+// Lab Exercise
+
+// 1. Display a history of operations performs using an unordered list beneath the buttons on the calculator.
+
+// 2. For each history entry, display the value typed into the input field and the type of operation performed.
+
+// 3. Be sure to follow the pattern on the back and be sure to use the correct parts of Redux and React to make this happen.
+
+// 4. Ensure it works.
