@@ -138,7 +138,7 @@
       // };
     
     </script> -->
-    <script>
+    <!-- <script>
 
       'use strict';
 
@@ -251,6 +251,79 @@
 
       // const doIt2 = doIt.bind({ id: 2});
       // doIt2();
+
+
+    </script> -->
+    <!-- <script>
+
+      let r = 2;
+
+      const outer = () => {
+
+        let t = 2;
+
+        setTimeout(() => {
+          t = 4;
+        }, 2000);
+
+        return () => {
+          console.log(t);
+          console.log(r);
+        };
+      };
+
+      const inner = outer();
+
+      inner(); // 2
+
+      setTimeout(() => {
+        inner(); // 4
+      }, 4000);
+
+      console.dir(inner);
+
+    </script> -->
+    <script>
+    
+      // C++ API on the Host
+      // setTimeout( ( // Task 1
+      // ) => {    // Task 1
+      //   console.log('a'); // Task 2
+      // }, 0);
+
+      // console.log('b'); // Task 1
+
+      // setTimeout(() => {
+      //     console.log('a');
+      //     setTimeout(() => {
+      //         console.log('b');
+      //         setTimeout(() => {
+      //             console.log('c');
+      //         }, 500);
+      //     }, 1000);
+      // }, 2000);
+
+      function allDone() {
+        console.log('all done');
+      }
+
+      setTimeout(() => {
+        console.log('a');
+      }, 2000);
+    
+      setTimeout(() => {
+        console.log('b');
+      }, 500);
+
+      setTimeout(() => {
+        console.log('c');
+      }, 1000);
+
+      // Using the above setTimeouts, run the allDone function when all three callbacks have executed
+      // Rules:
+      // 1. All three calls to setTimeout must be invoked in the same task
+      // 2. The delay values are irrelevant
+      // 3. You cannot add a fourth setTimeout
 
 
     </script>
