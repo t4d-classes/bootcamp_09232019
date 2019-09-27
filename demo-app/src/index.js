@@ -11,7 +11,6 @@ import {
 import { CalcTool } from './components/CalcTool';
 
 const mapStateToProps = state => {
-
   return {
     result: state.result,
     history: state.history,
@@ -31,16 +30,59 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   onDeleteHistoryItem: createDeleteHistoryItemAction
 }, dispatch);
 
+const connect = (mapStateToPropsFn, mapDispatchToPropsFn) => {
 
-const dispatchProps = mapDispatchToProps(calcStore.dispatch);
+  return PresentationalComponent => {
 
-calcStore.subscribe(() => {
-  ReactDOM.render(
-    <CalcTool
-      {...mapStateToProps(calcStore.getState())}
-      {...dispatchProps} />,
-    document.querySelector('#root'),
-  );
-});
+    return class ContainerComponent extends React.Component {
+      constructor(props) {
+        super(props);
+        this.dispatchProps = mapDispatchToPropsFn(props.store.dispatch);
+      }
 
-calcStore.dispatch(createAddAction(0));
+      // creation
+      componentDidMount() {
+        this.storeUnsubscribe = this.props.store.subscribe(() => {
+          // when state has occured...
+          this.forceUpdate();
+        });
+      }
+
+      // destruction
+      componentWillUnmount() {
+        this.storeUnsubscribe();
+      }
+
+      render() {
+        const stateProps = mapStateToPropsFn(this.props.store.getState());
+        return <PresentationalComponent {...this.dispatchProps} {...stateProps} />;
+      }
+
+    };
+  };
+
+};
+
+const createCalcToolContainer = connect(mapStateToProps, mapDispatchToProps);
+
+const CalcToolContainer = createCalcToolContainer(CalcTool);
+
+ReactDOM.render(
+  <CalcToolContainer store={calcStore} />,
+  document.querySelector('#root'),
+);
+
+
+
+// const dispatchProps = mapDispatchToProps(calcStore.dispatch);
+
+// calcStore.subscribe(() => {
+//   ReactDOM.render(
+//     <CalcTool
+//       {...mapStateToProps(calcStore.getState())}
+//       {...dispatchProps} />,
+//     document.querySelector('#root'),
+//   );
+// });
+
+// calcStore.dispatch(createAddAction(0));

@@ -1,11 +1,11 @@
 import { resultReducer } from './resultReducer';
 import { historyReducer } from './historyReducer';
 
-export const calcReducer = (state = { }, action) => {
+export const calcReducer = (appState = { }, action) => {
 
   return {
-    ...state,
-    result: resultReducer(state.result, action),
-    history: historyReducer(state.history, action),
+    ...appState,
+    result: resultReducer(appState.result, action),
+    history: historyReducer(appState.history, action),
   };
 };
