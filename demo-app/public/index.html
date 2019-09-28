@@ -303,27 +303,82 @@
       //     }, 1000);
       // }, 2000);
 
-      function allDone() {
-        console.log('all done');
-      }
+      // function allDone() {
+      //   console.log('all done');
+      // }
 
-      setTimeout(() => {
-        console.log('a');
-      }, 2000);
+      // let counter = 0;
+
+      // counter++;
+      // setTimeout(() => {
+      //   console.log('a');
+      //   counter--;
+      //   if (counter === 0) {
+      //     allDone();
+      //   }
+      // }, 1000);
     
-      setTimeout(() => {
-        console.log('b');
-      }, 500);
+      // counter++;
+      // setTimeout(() => {
+      //   console.log('b');
+      //   counter--;
+      //   if (counter === 0) {
+      //     allDone();
+      //   }
+      // }, 2500);
 
-      setTimeout(() => {
-        console.log('c');
-      }, 1000);
+      // counter++;
+      // setTimeout(() => {
+      //   console.log('c');
+      //   counter--;
+      //   if (counter === 0) {
+      //     allDone();
+      //   }
+      // }, 1000);
 
       // Using the above setTimeouts, run the allDone function when all three callbacks have executed
       // Rules:
       // 1. All three calls to setTimeout must be invoked in the same task
       // 2. The delay values are irrelevant
       // 3. You cannot add a fourth setTimeout
+      // 4. You cannot modify the allDone function
+
+      // const youngMan = new Promise(function youngLady(resolve, reject) {
+
+      //   console.log('1. Young man  has made the request.');
+
+      //   console.log('2. register the callback');
+      //   setTimeout(() => {
+      //     console.log('5. she says yes to the dress to someone else');
+      //     reject('she has fallen in love with his best friend...');
+      //   }, 2000);
+
+      // });
+
+      // console.log('3. register the then callback');
+      // youngMan.then((result) => {
+      //   console.log(result);
+      //   console.log('6a. yay, the young man is happy!');
+      // }).catch((result) => {
+      //   console.log(result);
+      //   console.log('6b. time to sign up for eHarmony to find a more compatible match');
+      // }).finally(() => {
+      //   console.log('finally the drama is over...');
+      // });
+
+      // console.log('4. young man is waiting...');
+
+      // const xhr = new XMLHttpRequest();
+
+      // xhr.addEventListener('readystatechange', () => {
+
+      //   if (xhr.status >= 200 && xhr.status < 400 && xhr.readyState === 4) {
+      //     console.log(JSON.parse(xhr.responseText));
+      //   }
+      // });
+
+      // xhr.open('GET', 'http://localhost:3010/cars');
+      // xhr.send();
 
 
     </script>
