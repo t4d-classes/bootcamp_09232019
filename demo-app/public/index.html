@@ -368,18 +368,20 @@
 
       // console.log('4. young man is waiting...');
 
-      // const xhr = new XMLHttpRequest();
+      const xhr = new XMLHttpRequest();
 
-      // xhr.addEventListener('readystatechange', () => {
+      xhr.addEventListener('readystatechange', () => {
 
-      //   if (xhr.status >= 200 && xhr.status < 400 && xhr.readyState === 4) {
-      //     console.log(JSON.parse(xhr.responseText));
-      //   }
-      // });
+        if (xhr.status >= 200 && xhr.status < 400 && xhr.readyState === 4) {
+          console.log(JSON.parse(xhr.responseText));
+        }
+      });
 
-      // xhr.open('GET', 'http://localhost:3010/cars');
-      // xhr.send();
+      xhr.open('GET', 'http://localhost:3010/cars');
+      xhr.send();
 
+      // Instructions: please create the myFetch function so that it works as described below, do not worry about error handling, use the XHR code above to make the AJAX call
+      myFetch('http://localhost:3010/cars').then(cars => console.log(cars));
 
     </script>
   </body>
