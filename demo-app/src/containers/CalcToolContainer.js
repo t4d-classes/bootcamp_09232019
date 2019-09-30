@@ -4,12 +4,13 @@ import { connect } from 'react-redux';
 import { CalcTool } from '../components/CalcTool';
 
 import {
-  createAddAction,
+  add,
   createSubtractAction,
   createMultiplyAction,
   createDivideAction,
   createClearAction,
   createDeleteHistoryItemAction,
+  refreshHistory,
 } from '../actions/calcActions';
 
 const mapStateToProps = state => {
@@ -24,12 +25,13 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  onAdd: createAddAction,
+  onAdd: add,
   onSubtract: createSubtractAction,
   onMultiply: createMultiplyAction,
   onDivide: createDivideAction,
   onClear: createClearAction,
-  onDeleteHistoryItem: createDeleteHistoryItemAction
+  onDeleteHistoryItem: createDeleteHistoryItemAction,
+  onRefreshHistory: refreshHistory,
 }, dispatch);
 
 

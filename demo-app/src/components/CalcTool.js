@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export const CalcTool = ({
   result, history,
@@ -10,9 +10,16 @@ export const CalcTool = ({
   onDivide: divide,
   onClear: clear,
   onDeleteHistoryItem: deleteHistoryItem,
+  onRefreshHistory: refreshHistory,
 }) => {
 
   const [ input, setInput ] = useState(0);
+
+  useEffect(() => {
+
+    refreshHistory();
+
+  }, []);
 
   return <form>
     <div>Result: {result}</div>

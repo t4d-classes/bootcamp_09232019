@@ -1,11 +1,11 @@
 import {
-  ADD_ACTION, SUBTRACT_ACTION, MULTIPLY_ACTION,
+  ADD_ACTION_DONE, SUBTRACT_ACTION, MULTIPLY_ACTION,
   DIVIDE_ACTION, CLEAR_ACTION
 } from '../actions/calcActions';
                             /// state, action
 export const resultReducer = (result = 0, action) => {
   switch(action.type) {
-    case ADD_ACTION:
+    case ADD_ACTION_DONE:
       return result + action.payload.num;
     case SUBTRACT_ACTION:
       return result - action.payload.num;
