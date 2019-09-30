@@ -493,17 +493,17 @@
         });
       };
 
-      myFetch('http://localhost:3010/cars', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          make: 'Ford',
-          model: 'T',
-          year: 1923,
-        }),
-      }).then(car => console.log(car));
+      // myFetch('http://localhost:3010/cars', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({
+      //     make: 'Ford',
+      //     model: 'T',
+      //     year: 1923,
+      //   }),
+      // }).then(car => console.log(car));
 
-      myFetch('http://localhost:3010/cars').then(cars => console.log(cars));
+      // myFetch('http://localhost:3010/cars').then(cars => console.log(cars));
 
 
       // Perform the following operations in order using myFetch (output everything to the console):
@@ -512,6 +512,63 @@
       // Add a New Car
       // Update the New Car to have a year 1 greater than when added it
       // Get All of the Cars
+
+      // myFetch('http://localhost:3010/cars')
+      //   .then(cars => {
+      //     console.log(cars);
+      //     return Promise.all(cars.map(car => {
+      //       if (car.id > 3) {
+      //         console.log('deleting id ' + car.id)
+      //         return myFetch(
+      //           'http://localhost:3010/cars/' + encodeURIComponent(car.id),
+      //           { method: 'DELETE' },
+      //         );
+      //       }
+      //     }));
+      //   })
+      //   .then(() => myFetch(
+      //     'http://localhost:3010/cars/',
+      //     {
+      //       method: 'POST',
+      //       headers: { 'Content-Type': 'application/json' },
+      //       body: JSON.stringify({
+      //         make: 'Ford',
+      //         model: 'T',
+      //         year: 1923,
+      //       }),
+      //     },
+      //   ))
+      //   .then(car => myFetch(
+      //     'http://localhost:3010/cars/' + encodeURIComponent(car.id),
+      //     {
+      //       method: 'PUT',
+      //       headers: { 'Content-Type': 'application/json' },
+      //       body: JSON.stringify({
+      //         ...car,
+      //         year: car.year + 1,
+      //       }),
+      //     }))
+      //   .then(() => myFetch('http://localhost:3010/cars'))
+      //   .then(cars => console.log(cars));
+
+      // promise-only way
+      // const getAllCars = () =>
+      //   fetch('http://localhost:3010/cars/')
+      //     .then(res => res.json());
+
+      // all the cool kids write it this way...
+      const getAllCars = async () => {
+        const res = await fetch('http://localhost:3010/cars/');
+        const cars = await res.json();
+        return cars;
+      };
+
+      
+      getAllCars().then(cars => console.log(cars));
+
+
+
+
 
 
 
