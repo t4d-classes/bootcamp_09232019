@@ -343,45 +343,148 @@
       // 3. You cannot add a fourth setTimeout
       // 4. You cannot modify the allDone function
 
+
+      // const proposeMarriage = () => {
+      //   console.log('propose marriage');
+      //   return new Promise(function youngLady(resolve, reject) {
+      //     setTimeout(() => {
+      //       resolve('she is madly in love with the young man...');
+      //     }, 2000);
+      //   });
+      // };
+
+      // const findLocation = (result) => {
+      //   console.log(result);
+      //   console.log('find a place to get married...');
+      //   return new Promise(resolve => {
+      //     setTimeout(() => {
+      //       resolve('found a place to get married...');
+      //     }, 2000);
+      //   });
+      // };
+
+      // const findClothes = (result) => {
+      //   console.log(result);
+      //   console.log('find some wedding clothes');
+      //   return new Promise(resolve => {
+      //     setTimeout(() => {
+      //       resolve('found some wedding clothes...');
+      //     }, 2000);
+      //   });
+      // };
+
+      // proposeMarriage()
+      //   .then(result => findLocation(result))
+      //   .then(result => findClothes(result))
+      //   .then(result => console.log(result))
+      //   .catch(err => console.log(err))
+      //   .finally(() => console.log('happily ever after!'));
+
+
+
       // const youngMan = new Promise(function youngLady(resolve, reject) {
 
-      //   console.log('1. Young man  has made the request.');
-
-      //   console.log('2. register the callback');
       //   setTimeout(() => {
-      //     console.log('5. she says yes to the dress to someone else');
-      //     reject('she has fallen in love with his best friend...');
+      //     resolve('she is madly in love with the young man...');
       //   }, 2000);
 
       // });
 
-      // console.log('3. register the then callback');
-      // youngMan.then((result) => {
-      //   console.log(result);
-      //   console.log('6a. yay, the young man is happy!');
-      // }).catch((result) => {
-      //   console.log(result);
-      //   console.log('6b. time to sign up for eHarmony to find a more compatible match');
-      // }).finally(() => {
-      //   console.log('finally the drama is over...');
-      // });
+      // youngMan
+      //   .then((result) => {
+      //     console.log(result);
 
-      // console.log('4. young man is waiting...');
+      //     console.log('find a place to get married...');
+      //     return new Promise(resolve => {
+
+      //       setTimeout(() => {
+      //         resolve('found a place to get married...');
+      //       }, 2000);
+      //     });
+        
+      //   })
+      //   .then(result => {
+
+      //     console.log(result);
+
+      //     console.log('find some wedding clothes');
+      //     return new Promise(resolve => {
+
+      //       setTimeout(() => {
+      //         resolve('found some wedding clothes...');
+      //       }, 2000);
+      //     });
+
+      //   })
+      //   .then(result => {
+      //     console.log(result);
+      //   })
+      //   .catch((result) => {
+      //     console.log(result);
+      //   })
+      //   .finally(() => {
+      //     console.log('live happily ever after!');
+      //   });
+
+      // collection url - 'http://localhost:3010/cars'
+      // GET verb - returns all of the cars in the collection
+      // POST verb - to add a car to a collection
+
+      // element/member url - 'http://localhost:3010/cars/2'
+      // GET verb - return a single car in the collection
+      // PUT verb - replaces a car in the collection
+      // DELETE verb - removes a car from the collection
 
       const xhr = new XMLHttpRequest();
 
       xhr.addEventListener('readystatechange', () => {
-
         if (xhr.status >= 200 && xhr.status < 400 && xhr.readyState === 4) {
           console.log(JSON.parse(xhr.responseText));
         }
       });
 
-      xhr.open('GET', 'http://localhost:3010/cars');
-      xhr.send();
+      xhr.open('POST', 'http://localhost:3010/cars');
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.send(JSON.stringify({
+        make: 'Ford',
+        model: 'T',
+        year: 1923,
+      }));  
+      
+      // Instructions: please upgrade the myFetch function so that it works as described below, do not worry about error handling, use the XHR code above to make the AJAX call
+      // DO NOT BREAK THE EARLIER API CALL
+      myFetch('http://localhost:3010/cars', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          make: 'Ford',
+          model: 'T',
+          year: 1923,
+        }),
+      }).then(car => console.log(car));
+      
 
-      // Instructions: please create the myFetch function so that it works as described below, do not worry about error handling, use the XHR code above to make the AJAX call
-      myFetch('http://localhost:3010/cars').then(cars => console.log(cars));
+
+      // const myFetch = url => {
+
+      //   return new Promise(resolve => {
+
+      //     const xhr = new XMLHttpRequest();
+
+      //     xhr.addEventListener('readystatechange', () => {
+
+      //       if (xhr.status >= 200 && xhr.status < 400 && xhr.readyState === 4) {
+      //         resolve(JSON.parse(xhr.responseText));
+      //       }
+      //     });
+
+      //     xhr.open('GET', url);
+      //     xhr.send();
+
+      //   });
+      // };
+
+
 
     </script>
   </body>
