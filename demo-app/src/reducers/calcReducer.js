@@ -4,6 +4,6 @@ import { resultReducer } from './resultReducer';
 import { historyReducer } from './historyReducer';
 
 export const calcReducer = combineReducers({
-  result: resultReducer(appState.result, action),
-  history: historyReducer(appState.history, action),
+  result: resultReducer,
+  history: historyReducer,
 });

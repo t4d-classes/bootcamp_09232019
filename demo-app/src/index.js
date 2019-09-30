@@ -1,13 +1,13 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import { Provider } from 'react-redux';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 
-// import { carStore } from './stores/carStore';
-// import { CarToolContainer } from './containers/CarToolContainer';
+import { calcStore } from './stores/calcStore';
+import { CalcToolContainer } from './containers/CalcToolContainer';
 
-// ReactDOM.render(
-//   <Provider store={carStore}>
-//     <CarToolContainer />
-//   </Provider>,
-//   document.querySelector('#root'),
-// );
+ReactDOM.render(
+  <Provider store={calcStore}>
+    <CalcToolContainer />
+  </Provider>,
+  document.querySelector('#root'),
+);
