@@ -435,24 +435,64 @@
       // PUT verb - replaces a car in the collection
       // DELETE verb - removes a car from the collection
 
-      const xhr = new XMLHttpRequest();
+      // const xhr = new XMLHttpRequest();
 
-      xhr.addEventListener('readystatechange', () => {
-        if (xhr.status >= 200 && xhr.status < 400 && xhr.readyState === 4) {
-          console.log(JSON.parse(xhr.responseText));
-        }
-      });
+      // xhr.addEventListener('readystatechange', () => {
+      //   if (xhr.status >= 200 && xhr.status < 400 && xhr.readyState === 4) {
+      //     console.log(JSON.parse(xhr.responseText));
+      //   }
+      // });
 
-      xhr.open('POST', 'http://localhost:3010/cars');
-      xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.send(JSON.stringify({
-        make: 'Ford',
-        model: 'T',
-        year: 1923,
-      }));  
+      // xhr.open('POST', 'http://localhost:3010/cars');
+      // xhr.setRequestHeader('Content-Type', 'application/json');
+      // xhr.send(JSON.stringify({
+      //   make: 'Ford',
+      //   model: 'T',
+      //   year: 1923,
+      // }));
+      
+      // if you do not have a request body, you must call the send function like this:
+      // xhr.send();
       
       // Instructions: please upgrade the myFetch function so that it works as described below, do not worry about error handling, use the XHR code above to make the AJAX call
       // DO NOT BREAK THE EARLIER API CALL
+      
+
+
+      const myFetch = (url, options = {}) => {
+
+        const requestOptions = {
+          method: 'GET',
+          headers: {},
+          body: '',
+          ...options,
+        };
+
+        return new Promise(resolve => {
+
+          const xhr = new XMLHttpRequest();
+
+          xhr.addEventListener('readystatechange', () => {
+            if (xhr.status >= 200 && xhr.status < 400 && xhr.readyState === 4) {
+              resolve(JSON.parse(xhr.responseText));
+            }
+          });
+
+          xhr.open(requestOptions.method, url);
+
+          Object.keys(requestOptions.headers).forEach(key => {
+            xhr.setRequestHeader(key, requestOptions.headers[key]);
+          });
+
+          if (requestOptions.body) {
+            xhr.send(requestOptions.body);
+          } else {
+            xhr.send();
+          }
+
+        });
+      };
+
       myFetch('http://localhost:3010/cars', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -462,27 +502,16 @@
           year: 1923,
         }),
       }).then(car => console.log(car));
-      
+
+      myFetch('http://localhost:3010/cars').then(cars => console.log(cars));
 
 
-      // const myFetch = url => {
-
-      //   return new Promise(resolve => {
-
-      //     const xhr = new XMLHttpRequest();
-
-      //     xhr.addEventListener('readystatechange', () => {
-
-      //       if (xhr.status >= 200 && xhr.status < 400 && xhr.readyState === 4) {
-      //         resolve(JSON.parse(xhr.responseText));
-      //       }
-      //     });
-
-      //     xhr.open('GET', url);
-      //     xhr.send();
-
-      //   });
-      // };
+      // Perform the following operations in order using myFetch (output everything to the console):
+      // Get All of the Cars
+      // Delete All Cars with an Id higher than 3 (delete one REST call at a time)
+      // Add a New Car
+      // Update the New Car to have a year 1 greater than when added it
+      // Get All of the Cars
 
 
 
