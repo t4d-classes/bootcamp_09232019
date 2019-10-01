@@ -1,0 +1,57 @@
+
+/* #building-20 {
+  color: red;
+}
+
+div {
+  color: green;
+}
+
+.dev.admin {
+  color:blue;
+} */
+
+/* [data-side-of-the-road^="l"] {
+  border: 2px solid palevioletred;
+} */
+
+/* input {
+  outline: none;
+}
+
+:invalid {
+  border: 2px solid red;
+}
+
+:valid {
+  border: 2px solid green;
+}
+
+:focus {
+  border: 2px solid blue;
+} */
+
+
+/* :last-child {
+  border: 2px solid #FF9900;
+} */
+/* 
+li:nth-child(3n + 1) {
+  font-weight: bold;
+}
+
+li:hover {
+  text-decoration: underline;
+} */
+
+/* p + p {
+  color: blue;
+} */
+
+input + span {
+  display: none;
+}
+
+input:invalid + span {
+  display: initial;
+}

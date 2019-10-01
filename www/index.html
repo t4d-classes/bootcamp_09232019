@@ -1,11 +1,87 @@
-<!doctype>
+<!doctype html>
 
 <html>
   <head>
     <title>Welcome!</title>
+    <style>
+
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #container {
+        position: fixed;
+        top: 0; left: 0;
+        right: 0; bottom: 0;
+        border: 2px solid blue;
+
+        display: grid;
+        grid-template-rows: 40px auto 30px;
+        grid-template-columns: 200px auto;
+        grid-template-areas: 
+          "header header"
+          "sidebar content"
+          "footer footer"
+      }
+
+      header, aside, main, footer {
+        border: 2px solid green;
+      }
+
+      h1 {
+        font-size: smaller;
+        border: 2px solid red;
+        text-align: center;
+        width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      header {
+        grid-area: header;
+        text-align: center;
+      }
+
+      aside {
+        grid-area: sidebar;
+      }
+
+      main {
+        grid-area: content;
+      }
+
+      footer {
+        grid-area: footer;
+        text-align: center;
+      }
+
+      .some-class {
+        color: blue;
+      }
+
+
+    </style>
   </head>
 
   <body>
-    <h1>Hello World!</h1>
+
+    <div id="container">
+      <header class="some-class">
+        Some extra content...
+        <h1>The App</h1>
+      </header>
+      <aside>
+        SideBar
+      </aside>
+      <main>
+        Content
+      </main>
+      <footer>
+        <small>&copy; 2019, A Cool Company, Inc.</small>
+      </footer>
+    </div>
+
+
   </body>
 </html>
