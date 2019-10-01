@@ -1,0 +1,13 @@
+Exercise 16
+
+1. Implement the new history functionality for the subtract, multiply and divide actions.
+
+2. Implement the new history functionality for the clear action. For the clear, erase the history on the REST service.
+
+3. Implement the new history functionality on the individual item delete.
+
+Bonus
+
+4. On the initial load, repeat the history of actions to prepopulate the result.
+
+5. When deleting an individual action, recalculate the result.

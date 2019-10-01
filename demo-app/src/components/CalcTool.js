@@ -19,7 +19,7 @@ export const CalcTool = ({
 
     refreshHistory();
 
-  }, []);
+  }, [ refreshHistory ]);
 
   return <form>
     <div>Result: {result}</div>
@@ -36,7 +36,7 @@ export const CalcTool = ({
       {history.map((h, i) => (
         <li key={i}>
           {h.opName} {h.opValue}
-          <button type="button" onClick={() => deleteHistoryItem(i)}>X</button>
+          <button type="button" onClick={() => deleteHistoryItem(h.id)}>X</button>
         </li>
       ))}
     </ul>

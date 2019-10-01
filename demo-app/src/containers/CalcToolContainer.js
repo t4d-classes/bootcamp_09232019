@@ -5,11 +5,11 @@ import { CalcTool } from '../components/CalcTool';
 
 import {
   add,
-  createSubtractAction,
-  createMultiplyAction,
-  createDivideAction,
-  createClearAction,
-  createDeleteHistoryItemAction,
+  subtract,
+  multiply,
+  divide,
+  clear,
+  deleteHistoryItem,
   refreshHistory,
 } from '../actions/calcActions';
 
@@ -26,11 +26,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   onAdd: add,
-  onSubtract: createSubtractAction,
-  onMultiply: createMultiplyAction,
-  onDivide: createDivideAction,
-  onClear: createClearAction,
-  onDeleteHistoryItem: createDeleteHistoryItemAction,
+  onSubtract: subtract,
+  onMultiply: multiply,
+  onDivide: divide,
+  onClear: clear,
+  onDeleteHistoryItem: deleteHistoryItem,
   onRefreshHistory: refreshHistory,
 }, dispatch);
 

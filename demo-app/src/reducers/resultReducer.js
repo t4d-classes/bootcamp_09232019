@@ -1,19 +1,19 @@
 import {
-  ADD_ACTION_DONE, SUBTRACT_ACTION, MULTIPLY_ACTION,
-  DIVIDE_ACTION, CLEAR_ACTION
+  ADD_DONE_ACTION, SUBTRACT_DONE_ACTION, MULTIPLY_DONE_ACTION,
+  DIVIDE_DONE_ACTION, CLEAR_DONE_ACTION
 } from '../actions/calcActions';
-                            /// state, action
+
 export const resultReducer = (result = 0, action) => {
   switch(action.type) {
-    case ADD_ACTION_DONE:
+    case ADD_DONE_ACTION:
       return result + action.payload.num;
-    case SUBTRACT_ACTION:
+    case SUBTRACT_DONE_ACTION:
       return result - action.payload.num;
-    case MULTIPLY_ACTION:
+    case MULTIPLY_DONE_ACTION:
       return result * action.payload.num;
-    case DIVIDE_ACTION:
+    case DIVIDE_DONE_ACTION:
       return result / action.payload.num;
-    case CLEAR_ACTION:
+    case CLEAR_DONE_ACTION:
       return 0;
     default:
       return result;
