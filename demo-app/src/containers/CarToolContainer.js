@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import { CarTool } from '../components/CarTool';
 
 import {
-  createAppendCarAction,
-  createReplaceCarAction,
-  createDeleteCarAction,
+  refreshCars,
+  appendCar,
+  replaceCar,
+  deleteCar,
   createEditCarAction,
   createCancelCarAction,
 } from '../actions/carActions';
@@ -19,9 +20,10 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  onAppendCar: createAppendCarAction,
-  onReplaceCar: createReplaceCarAction,
-  onDeleteCar: createDeleteCarAction,
+  onRefreshCars: refreshCars,
+  onAppendCar: appendCar,
+  onReplaceCar: replaceCar,
+  onDeleteCar: deleteCar,
   onEditCar: createEditCarAction,
   onCancelCar: createCancelCarAction,
 }, dispatch);

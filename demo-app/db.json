@@ -10,20 +10,8 @@
     {
       "make": "Ford",
       "model": "T",
-      "year": 1924,
+      "year": 1922,
       "id": 2
-    },
-    {
-      "make": "Ford",
-      "model": "T",
-      "year": 1924,
-      "id": 3
-    },
-    {
-      "make": "Ford",
-      "model": "T",
-      "year": 1924,
-      "id": 4
     }
   ]
 }
