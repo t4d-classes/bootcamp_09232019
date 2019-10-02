@@ -5,6 +5,10 @@ export const typeDefs = `
     car(carId: ID): Car
   }
 
+  type Mutation {
+    appendCar(car: AppendCar): Car
+  }
+
   type Car {
     id: ID
     make: String
@@ -13,4 +17,12 @@ export const typeDefs = `
     color: String
     price: Float
   }
+
+  input AppendCar {
+    make: String
+    model: String
+    year: Int
+    color: String
+    price: Float
+  }  
 `;

@@ -12,4 +12,19 @@ export const resolvers = {
         .then(res => res.json());
     } 
   },
+  Mutation: {
+    appendCar: async (_, args, context) => {
+
+      const res = await fetch(
+        context.restURL + '/cars',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(args.car),
+        }
+      );
+
+      return await res.json();
+    },
+  },
 };
