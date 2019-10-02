@@ -1,0 +1,9 @@
+Exercise 1
+
+1. Implement a car delete mutation (return the car which was deleted) on the server and client. Please use the update local cache approach. You may include the optimistic if you want.
+
+When coding the delete car resolver do the following:
+
+fetch/get the car
+fetch/delete the car
+return the car that you fetched/got
